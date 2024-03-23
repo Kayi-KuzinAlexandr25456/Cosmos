@@ -658,11 +658,22 @@ namespace Cosmos.System.Graphics
         {
             var len = str.Length;
             var width = font.Width;
+            var height = font.Height;
+
+            var currentX = x;
+            var currentY = y;
 
             for (int i = 0; i < len; i++)
             {
+                if (str[i] == '\n')
+                {
+                    currentY += height;
+                    currentX = x;
+                    continue;
+                }
+
                 DrawChar(str[i], font, color, x, y);
-                x += width;
+                currentX += width;
             }
         }
 
